@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>百度地图离线API V2.1</title>
+	<link rel="stylesheet" type="text/css" href="./offlinemap/css/map.css"/>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="main" style="width:600px; height: 400px;"></div>
+	<script type="text/javascript" src="./offlinemap/map_load.js"></script>
+	<script type="text/javascript" src="./offlinemap_demo/jquery.js"></script>
+	<script type="text/javascript" src="./offlinemap_demo/layer/layer.js"></script>
+	<script src="./echarts.js"></script>
+	<script src="./bmap.js"></script>
+</body>
+<script type="text/javascript">  
+var myChart = echarts.init(document.getElementById('main'));
+myChart.setOption({
+    bmap: {
+        center: [120.13066322374, 30.240018034923], // 中心位置坐标
+        zoom: 8, // 地图缩放比例、层次
+        roam: true, // 开启用户缩放
+    },
+    series: [{
+        type: 'scatter',
+        coordinateSystem: 'bmap',
+        data: [ [120, 30, 1],[120, 31, 1] ]
+    }]
+
+
+});
+
+var bmap = myChart.getModel().getComponent('bmap').getBMap();
+bmap.addControl(new BMap.MapTypeControl());
+</script>
+</html>
